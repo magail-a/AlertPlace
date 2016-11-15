@@ -65,7 +65,34 @@ app.post('/mycars', function(req, res) {
 	res.status(201).send(car);
 });
 
-app.listen(8000);
+app.put('/mycars/:phone/:id', function(req, res) {
+	if (req.body.name === undefined || req.body.plaque === undefined) {
+		res.status(400).send({"Error" : "Bad Request"});
+		return;
+	}
+	for (var i = 0; i < cars.length; i++) {
+		if (cars[i].id == req.params.id && cars[i].phone == req.params.phone) {
+			cars[i].name = req.body.name;
+			cars[i].plaque = req.body.plaque;
+			res.send(cars[i]);
+			return;
+		}
+	}
+	res.status(404).send({ "Error" : "Not Found"});
+});
+
+app.delete('/mycars/:phone/:id', function(req, res) {
+	for (var i = 0; i < cars.length; i++) {
+		if (cars[i].id == req.params.id && cars[i].phone == req.params.phone) {
+			cars.splice(i, 1);
+			res.send({ "Success" : "200"});
+			return;
+		}
+	}
+	res.status(404).send({ "Error" : "Not Found"});
+});
+
+app.listen(1234);
 
 console.log('Server running at http://localhost:8000/');
 
