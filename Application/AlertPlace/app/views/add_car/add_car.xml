@@ -1,0 +1,14 @@
+<Page loaded="loaded" actionBarHidden="true">
+	<ScrollView>
+		<StackLayout orientation="vertical">
+			<Label class="title" text="Ajouter un véhicule" />
+			<Label class="title-textfield" text="Nom du véhicule:" />
+			<TextField hint="Ma voiture" autocorrect="false" />
+			<Label class="title-textfield" text="Plaque du véhicule:" />
+			<TextField hint="00-0000-00" autocorrect="false" />
+			<Button text="Valider" tap="valid" />
+			<Button text="Annuler" tap="cancel" />
+		</StackLayout>
+	</ScrollView>
+</Page>
+

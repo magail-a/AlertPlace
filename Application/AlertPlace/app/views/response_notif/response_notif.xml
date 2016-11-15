@@ -1,0 +1,11 @@
+<Page loaded="loaded" actionBarHidden="true">
+	<ScrollView>
+		<StackLayout orientation="vertical">
+			<Label class="title" text="Notification" />
+			<Label class="title-button" text="Votre response:" />
+			<Button text="J'arrive tout de suite" tap="responseNow" />
+			<Button text="J'arrive dans 5 minutes" tap="response5" />
+			<Button text="J'arrive dans 10 minutes" tap="response10" />
+		</StackLayout>
+	</ScrollView>
+</Page>

@@ -1,0 +1,11 @@
+<Page loaded="loaded" actionBarHidden="true">
+	<ScrollView>
+		<StackLayout orientation="vertical">
+			<Label class="title" text="Signaler un véhicule" />
+			<Label class="title-textfield" text="Plaque du véhicule:" />
+			<TextField hint="00-0000-00" autocorrect="false" />
+			<Button text="Signaler" tap="signal" />
+		</StackLayout>
+	</ScrollView>
+</Page>
+

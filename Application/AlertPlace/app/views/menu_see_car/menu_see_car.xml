@@ -1,0 +1,18 @@
+<Page loaded="loaded" actionBarHidden="true">
+	<ScrollView>
+		<StackLayout orientation="vertical">
+			<Label class="title" text="AlertPlace" />
+			<Button text="Ajouter un nouveau véhicule" tap="addCar" />
+			<Label class="title-list" text="Mes véhicules:" />
+			<ListView items="{{ carList }}">
+				<ListView.itemTemplate>
+					<WrapLayout id= "{{ id }}" class="item-list" orientation="horizontal">
+						<Label  class="label-item-list" text="{{ name }}" horizontalAlignment="left" verticalAlignment="center" />
+						<Button class="button-item-list" text="Editer" tap="editCar" />
+						<Button class="button-item-list" text="Supprimer" tap="deleteCar" />
+					</WrapLayout>
+				</ListView.itemTemplate>
+			</ListView>
+		</StackLayout>
+	</ScrollView>
+</Page>

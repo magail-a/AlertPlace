@@ -1,0 +1,11 @@
+<Page loaded="loaded" actionBarHidden="true">
+	<StackLayout orientation="vertical">
+		<Label class="title" text="Voir mes notifications" />
+		<Label class="title-list" text="Mes notifications:" />
+		<ListView id="listView" items="{{ notifList }}">
+            <ListView.itemTemplate>
+				<Button id="{{ id }}"  class="item-list" text="{{ date }}" tap="notif" />
+            </ListView.itemTemplate>
+        </ListView>
+	</StackLayout>
+</Page>

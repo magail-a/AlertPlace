@@ -1,0 +1,10 @@
+<Page loaded="loaded" actionBarHidden="true">
+	<ScrollView>
+		<StackLayout orientation="vertical">
+			<Label class="title" text="AlertPlace" />
+			<Button text="Voir mes véhicules" tap="seeCar" />
+			<Button text="Signaler un véhicule" tap="signalCar" />
+			<Button text="Voir mes notifications" tap="seeNotif" />
+		</StackLayout>
+	</ScrollView>
+</Page>
