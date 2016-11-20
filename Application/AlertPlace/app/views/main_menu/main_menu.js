@@ -6,7 +6,57 @@ var page;
 
 var fetchModule = require("fetch");
 
-var fct_test = function() {
+function handleErrors(response) {
+    if (!response.ok) {
+        console.log(JSON.stringify(response));
+        throw Error(response.statusText);
+    }
+    return response;
+}
+
+exports.getRequest = function() {
+	console.log(app_data.apiUrl + "mycars/123456789");
+    fetchModule.fetch(app_data.apiUrl + "mycars/123456789", {
+        method: "GET",
+        body: "",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    /*fetchModule.fetch("https://www.youtube.com", {
+        method: "GET"
+    })*/
+    /*.then(function(response) {
+		var a = response.json();
+		a.popo = 5;
+        console.log("Success");
+        console.log("Success: " + response);
+        console.log("Success: " + response.json());
+        console.log("Success: " + JSON.stringify(response));
+        console.log("Success: " + JSON.stringify(response.json()));
+        console.log("Success: " + response.text());
+        console.log("Success: " + JSON.stringify(response.text()));
+		
+    }, function(e) {
+        console.log("Error occurred " + e);
+    })*/
+	.then(function handleErrors(response) {
+		if (!response.ok) {
+			console.log(JSON.stringify(response));
+			throw Error(response.statusText);
+		}
+		return response
+	})
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log("Success: " + data);
+		console.log("Success: " + JSON.stringify(data));
+    });
+}
+
+var Requester = function() {
 	console.log(app_data.apiUrl + "mycars/123456789");
 	return fetchModule.fetch(app_data.apiUrl + "mycars/123456789", {
         method: "GET",
@@ -30,7 +80,6 @@ var fct_test = function() {
 exports.loaded = function(args) {
     console.log("loaded called");
 	page = args.object;
-	console.log("return: " + JSON.stringify(fct_test()));
 };
 
 exports.seeCar = function() {

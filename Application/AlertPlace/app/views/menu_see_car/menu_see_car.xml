@@ -4,15 +4,18 @@
 			<Label class="title" text="AlertPlace" />
 			<Button text="Ajouter un nouveau véhicule" tap="addCar" />
 			<Label class="title-list" text="Mes véhicules:" />
-			<ListView items="{{ carList }}">
+			<ListView id="list-cars" items="{{ cars }}">
 				<ListView.itemTemplate>
 					<WrapLayout id= "{{ id }}" class="item-list" orientation="horizontal">
-						<Label  class="label-item-list" text="{{ name }}" horizontalAlignment="left" verticalAlignment="center" />
+						<Label  class="label-name-item-list" text="{{ name }}" horizontalAlignment="left" verticalAlignment="center" />
+						<Label  class="label-plaque-item-list" text="{{ plaque }}" horizontalAlignment="left" verticalAlignment="center" />
 						<Button class="button-item-list" text="Editer" tap="editCar" />
 						<Button class="button-item-list" text="Supprimer" tap="deleteCar" />
+						<ActivityIndicator class="indicator-item-list" busy="false" />
 					</WrapLayout>
 				</ListView.itemTemplate>
 			</ListView>
+			<ActivityIndicator busy="{{ isLoading }}" />
 		</StackLayout>
 	</ScrollView>
 </Page>

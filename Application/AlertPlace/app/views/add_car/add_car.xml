@@ -3,11 +3,12 @@
 		<StackLayout orientation="vertical">
 			<Label class="title" text="Ajouter un véhicule" />
 			<Label class="title-textfield" text="Nom du véhicule:" />
-			<TextField hint="Ma voiture" autocorrect="false" />
+			<TextField id="tf-name" hint="Ma voiture" text="ffXV" autocorrect="false" />
 			<Label class="title-textfield" text="Plaque du véhicule:" />
-			<TextField hint="00-0000-00" autocorrect="false" />
-			<Button text="Valider" tap="valid" />
-			<Button text="Annuler" tap="cancel" />
+			<TextField id="tf-plaque" hint="00-0000-00" text="PO-45145-PO" autocorrect="false" />
+			<Button id="button-valid" text="Valider" tap="valid" />
+			<Button id="button-cancel"  text="Annuler" tap="cancel" />
+			<ActivityIndicator busy="{{ isLoading }}" />
 		</StackLayout>
 	</ScrollView>
 </Page>

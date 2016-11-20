@@ -9,7 +9,6 @@ Label {
 
 TextField {
     margin: 10;
-    padding: 10;
 }
 
 Image {
@@ -33,6 +32,10 @@ Button:highlighted {
 	background-color: #FF7130;
 }
 
+ActivityIndicator {
+	margin: 10;
+}
+
 .title {
     font-size: 30;
     horizontal-align: center;
@@ -49,3 +52,9 @@ Button:highlighted {
     margin: 0 20;
     text-align: center;
 }
+
+.button-disabled {
+	width: 40%;
+	background-color: #CCCCCC;
+}
+

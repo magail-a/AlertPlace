@@ -1,7 +1,7 @@
 
 ListView {
 	width: 90%;
-	height: 300;
+	#height: 300;
 }
 
 .title-list {
@@ -16,15 +16,19 @@ ListView {
 	background-color: #FFC3A3;
 }
 
-.label-item-list {
+.label-name-item-list {
 	margin-left: 10;
-	width: 60%;
+	width: 20%;
+}
+
+.label-plaque-item-list {
+	width: 40%;
 }
 
 .button-item-list {
 	width: 40;
 	height: 40;
-	margin-left: 10; 
+	margin-left: 5;
 	margin-right: 0;
 	background-color: #E54C00;
 }
