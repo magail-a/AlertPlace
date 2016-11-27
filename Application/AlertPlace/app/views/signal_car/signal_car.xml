@@ -3,8 +3,9 @@
 		<StackLayout orientation="vertical">
 			<Label class="title" text="Signaler un véhicule" />
 			<Label class="title-textfield" text="Plaque du véhicule:" />
-			<TextField hint="00-0000-00" autocorrect="false" />
-			<Button text="Signaler" tap="signal" />
+			<TextField id="tf-plaque" hint="00-0000-00" text="PO-45145-PO" autocorrect="false" />
+			<Button id="button-signal" text="Signaler" tap="signalCar" />
+			<ActivityIndicator busy="{{ isLoading }}" />
 		</StackLayout>
 	</ScrollView>
 </Page>

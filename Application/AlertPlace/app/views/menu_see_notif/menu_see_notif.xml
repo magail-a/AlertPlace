@@ -1,11 +1,19 @@
 <Page loaded="loaded" actionBarHidden="true">
-	<StackLayout orientation="vertical">
-		<Label class="title" text="Voir mes notifications" />
-		<Label class="title-list" text="Mes notifications:" />
-		<ListView id="listView" items="{{ notifList }}">
-            <ListView.itemTemplate>
-				<Button id="{{ id }}"  class="item-list" text="{{ date }}" tap="notif" />
-            </ListView.itemTemplate>
-        </ListView>
-	</StackLayout>
+	<ScrollView>
+		<StackLayout orientation="vertical">
+			<Label class="title" text="Voir mes notifications" />
+			<Label class="title-list" text="Mes notifications:" />
+			<ListView id="list-notifs" items="{{ notifs }}">
+				<ListView.itemTemplate>
+					<WrapLayout id= "{{ id }}" class="item-list" orientation="horizontal">
+						<Label  class="label-name-item-list" text="{{ name }}" horizontalAlignment="left" verticalAlignment="center" />
+						<Label  class="label-plaque-item-list" text="{{ plaque }}" horizontalAlignment="left" verticalAlignment="center" />
+						<Label  class="label-date-item-list" text="{{ creation_date }}" horizontalAlignment="left" verticalAlignment="center" />
+					</WrapLayout>
+					<!-- <Button id="{{ id }}"  class="item-list" text="{{ date }}" tap="notif" /> -->
+				</ListView.itemTemplate>
+			</ListView>
+			<ActivityIndicator busy="{{ isLoading }}" />
+		</StackLayout>
+	</ScrollView>
 </Page>

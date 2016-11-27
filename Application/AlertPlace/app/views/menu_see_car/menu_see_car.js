@@ -83,12 +83,12 @@ exports.loaded = function(args) {
 		enableUI();
 	})
 	.catch(function(error) {
-		console.log(error);
+		console.log("Error catch: " + JSON.stringify(error));
 		updateHeightOfListView();
 		enableUI();
 		dialogsModule
 			.alert({
-				message: "An error is occurred while get your cars",
+				message: "Une erreur est survenue. Nous arrivons pas à recupérer vos véhicules",
 				okButtonText: "OK"
 			});
 	});
@@ -110,24 +110,37 @@ exports.editCar = function(args) {
     topmost.navigate("views/edit_car/edit_car");
 };
 
-exports.deleteCar = function(args) {
-    console.log("deleteCar called " + args.object.parent.id);
-	disableItem(args.object.parent.id);
-	cars.deleteMyCar(args.object.parent.id)
+function deleteCar(id) {
+	disableItem(id);
+	cars.deleteMyCar(id)
 	.then(function(data) {
 		console.log("deleteCar success");
-		enableItem(args.object.parent.id);
-		cars.remove(args.object.parent.id);
+		enableItem(id);
+		cars.remove(id);
 		updateHeightOfListView();
 	})
 	.catch(function(error) {
-		console.log("Error catch: " + error);
-		disableItem(args.object.parent.id);
+		console.log("Error catch: " + JSON.stringify(error));
+		disableItem(id);
 		dialogsModule
 			.alert({
 				message: "An error is occurred while add your new car",
 				okButtonText: "OK"
 			});
-	});;
+	});;	
+}
+
+exports.deleteCar = function(args) {
+    console.log("deleteCar called " + args.object.parent.id);
+	var dialogs = require("ui/dialogs");
+	dialogs.confirm({
+		message: "Etes vous sur de vouloir supprimer ce véhicule?",
+		okButtonText: "Oui",
+		cancelButtonText: "Non"
+	}).then(function (result) {
+		if (result) {
+			deleteCar(args.object.parent.id);
+		}
+	});
 };
 

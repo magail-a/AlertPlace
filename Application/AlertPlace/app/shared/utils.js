@@ -4,7 +4,10 @@ var utils = {};
 utils.handleErrors = function (response) {
 	if (!response.ok) {
 		console.log(JSON.stringify(response));
-		throw Error(response.statusText);
+		throw {
+			status : response.status,
+			statusText : response.statusText
+		};
 	}
 	return response;
 }

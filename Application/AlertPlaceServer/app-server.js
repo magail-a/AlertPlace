@@ -41,12 +41,16 @@ var cars = [
 	sample_car_3
 ];
 
+var notifs = [
+
+];
+
 app.get('/cars', function(req, res) {
 	res.send(cars);
 });
 
 app.get('/mycars/:phone', function(req, res) {
-	sleep.sleep(2);
+	//sleep.sleep(2);
 	var mycars = []
 	for (var i in cars) {
 		var car = cars[i];
@@ -62,7 +66,7 @@ function getRandomInt (min, max) {
 }
 
 app.post('/cars', function(req, res) {
-	sleep.sleep(2);
+	//sleep.sleep(2);
 	if (req.body.phone === undefined || req.body.name === undefined || req.body.plaque === undefined) {
 		res.status(400).send({"Error" : "Bad Request"});
 		return;
@@ -78,7 +82,7 @@ app.post('/cars', function(req, res) {
 });
 
 app.put('/mycars/:phone/:id', function(req, res) {
-	sleep.sleep(2);
+	//sleep.sleep(2);
 	if (req.body.name === undefined || req.body.plaque === undefined) {
 		res.status(400).send({"Error" : "Bad Request"});
 		return;
@@ -95,7 +99,7 @@ app.put('/mycars/:phone/:id', function(req, res) {
 });
 
 app.delete('/mycars/:phone/:id', function(req, res) {
-	sleep.sleep(2);
+	//sleep.sleep(2);
 	for (var i = 0; i < cars.length; i++) {
 		if (cars[i].id == req.params.id && cars[i].phone == req.params.phone) {
 			cars.splice(i, 1);
@@ -104,6 +108,66 @@ app.delete('/mycars/:phone/:id', function(req, res) {
 		}
 	}
 	res.status(404).send({ "Error" : "Not Found"});
+});
+
+app.post('/notifs', function(req, res) {
+	//sleep.sleep(2);
+	if (req.body.phone === undefined || req.body.plaque === undefined) {
+		res.status(400).send({"Error" : "Bad Request"});
+		return;
+	}
+	var receivers = [];
+	for (var i = 0; i < cars.length; i++) {
+		if (cars[i].plaque == req.body.plaque) {
+			receivers.push({
+				name : cars[i].name,
+				phone : cars[i].phone
+			});
+		}
+	}
+	if (receivers.length == 0) {
+		res.status(404).send({"Error" : "Not Found"});
+		return;		
+	}
+	var notif = {
+		id : getRandomInt(1, 12000000000),
+		sender : req.body.phone,
+		plaque :req.body.plaque,
+		receivers : receivers,
+		creation_date : new Date()
+	};
+	console.log(JSON.stringify(notif));
+	notifs.push(notif);
+	res.status(201).send(notif);
+});
+
+
+app.get('/mynotifs/:phone', function(req, res) {
+	//sleep.sleep(2);
+	var mynotifs = []
+	for (var i in notifs) {
+		var notif = notifs[i];
+		var isOwner;
+		for (var j = 0; j < notif.receivers.length; j++) {
+			if (notif.receivers[j].phone == req.params.phone) {
+				isOwner = {
+					name : notif.receivers[j].name,
+					phone : notif.receivers[j].phone
+				};
+			}
+		}
+		if (isOwner) {
+			mynotifs.push({
+				id : notif.id,
+				sender : notif.sender,
+				plaque : notif.plaque,
+				name : isOwner.name,
+				creation_date : notif.creation_date
+			})
+		}
+	}
+	console.log(JSON.stringify(mynotifs));
+	res.send(mynotifs);
 });
 
 app.listen(1234);

@@ -48,11 +48,11 @@ exports.valid = function() {
 		topmost.goBack();
 	})
 	.catch(function(error) {
-		console.log("Error catch: " + error);
+		console.log("Error catch: " + JSON.stringify(error));
 		enableUI();
 		dialogsModule
 			.alert({
-				message: "An error is occurred while put your new car",
+				message: "Une erreur est survenue. Les changements n'ont pas été pris en compte",
 				okButtonText: "OK"
 			});
 	});;

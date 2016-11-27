@@ -16,3 +16,17 @@ ListView {
 	margin-right: 0;
 	background-color: #FFC3A3;
 }
+
+.label-name-item-list {
+	margin-left: 10;
+	width: 20%;
+}
+
+.label-plaque-item-list {
+	width: 40%;
+}
+
+.label-date-item-list {
+	width: 100%;
+}
+

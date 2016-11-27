@@ -1,6 +1,6 @@
 
 var utils = require("../../shared/utils");
-var colorModule = require("color");
+//var colorModule = require("color");
 var frameModule = require("ui/frame");
 //var buttonModule = require("ui/button");
 var dialogsModule = require("ui/dialogs");
@@ -37,26 +37,26 @@ exports.loaded = function(args) {
 exports.valid = function(args) {
 	console.log("valid called");
 	disableUI();
-	/*cars.addCar({
+	cars.addCar({
 		name : page.getViewById("tf-name").text,
 		plaque : page.getViewById("tf-plaque").text,
 		phone : "123456789"
 	})
 	.then(function(data) {
 		console.log("valid success");
-		enableUI();
+		//enableUI();
 		var topmost = frameModule.topmost();
 		topmost.goBack();
 	})
-	.catch(function(error) {*/
-		//console.log("Error catch: " + error);
+	.catch(function(error) {
+		console.log("Error catch: " + JSON.stringify(error));
 		enableUI();
 		dialogsModule
 			.alert({
-				message: "An error is occurred while add your new car",
+				message: "Une erreur est survenue. Votre véhicule n'a pas été sauvegardé",
 				okButtonText: "OK"
 			});
-	//});;
+	});;
 };
 
 exports.cancel = function() {
